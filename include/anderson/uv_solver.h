@@ -34,8 +34,8 @@ namespace anderson
             template <typename ValT, typename PtrT, typename WeightT, typename... PointerWeightTypePair>
             inline void combineUV(size_t n_hist, PtrT FirstPtr, WeightT FirstWeight, PointerWeightTypePair... Rest)
             {
-                static_assert(std::is_same<PtrT, ValT *>::value);
-                static_assert(std::is_same<WeightT, ValT>::value);
+                static_assert(std::is_same<typename std::remove_cvref<PtrT>::type, ValT *>::value);
+                static_assert(std::is_same<typename std::remove_cvref<WeightT>::type, ValT>::value);
                 for (size_t itr = 0; itr < n_hist * (n_hist + 1); ++itr)
                 {
                     FirstPtr[itr] *= FirstWeight;
@@ -138,7 +138,7 @@ namespace anderson
                 static_assert(qutility::traits::is_correct_list_of_n<
                               2, qutility::traits::is_type_T<ValT *>, qutility::traits::is_type_T<ValT>, double *, double, std::remove_reference_t<Ts>...>::value);
 
-                detail::combineUV(nhist_, first_uv, first_weight, Args...);
+                detail::combineUV<ValT>(nhist_, first_uv, first_weight, Args...);
                 detail::maskOldUV(nhist_, first_uv, current_pos, using_history_count);
 
                 ValT *U = first_uv;
@@ -161,7 +161,7 @@ namespace anderson
                 {
                     coef_[itr] = V[itr];
                 }
-                detail::modifyCoef(nhist_, coef_);
+                detail::modifyCoef(nhist_, coef_.pointer());
             }
         };
 
