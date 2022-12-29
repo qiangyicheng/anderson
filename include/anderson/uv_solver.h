@@ -102,8 +102,11 @@ namespace anderson
                 return *this;
             }
 
+            const ValT *get_coef() { return coef_; }
+
         private:
-            friend class DualHistory<ValT, MaskValT>;;
+            friend class DualHistory<ValT, MaskValT>;
+            ;
             const size_t nhist_;
             ArrayT coef_;
             qutility::array_wrapper::ArrayDDR<int> data_;
