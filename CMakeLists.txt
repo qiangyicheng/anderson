@@ -36,8 +36,8 @@ set(BLA_VENDOR OpenBLAS)
 find_package(BLAS REQUIRED)
 target_link_libraries(${PROJECT_NAME} INTERFACE BLAS::BLAS)
 
-find_package(LAPACK REQUIRED)
-target_link_libraries(${PROJECT_NAME} INTERFACE LAPACK::LAPACK)
+# find_package(LAPACK REQUIRED)
+# target_link_libraries(${PROJECT_NAME} INTERFACE LAPACK::LAPACK)
 
 find_package(OpenBLAS REQUIRED)
 target_link_libraries(${PROJECT_NAME} INTERFACE OpenBLAS::OpenBLAS)
