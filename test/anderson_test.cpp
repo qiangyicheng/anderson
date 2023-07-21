@@ -11,10 +11,13 @@
 #include "anderson/dual_history.h"
 #include "anderson/uv_solver.h"
 
+#ifdef I
+#undef I
+#endif
 // gtest headers
 #include <gtest/gtest.h>
 
-TEST(TrivialTest, Add)
+TEST(Anderson, TrivialAdd)
 {
     EXPECT_EQ(1 + 1, 2);
 }
