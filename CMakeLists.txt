@@ -16,7 +16,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 include(FetchContent)
 
 FetchContent_Declare(qutility
-    GIT_REPOSITORY    https://github.com/qiangyicheng/qutility_cmake.git
+    GIT_REPOSITORY    git@github.com:qiangyicheng/qutility_cmake.git
     GIT_TAG           main
 )
 
